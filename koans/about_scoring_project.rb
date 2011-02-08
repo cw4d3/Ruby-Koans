@@ -30,7 +30,28 @@ require File.expand_path(File.dirname(__FILE__) + '/edgecase')
 # Your goal is to write the score method.
 
 def score(dice)
-  # You need to write this method
+  raise RuntimeError, "You rolled (#{dice.length} dice. Please roll again." unless dice.length <= 5
+  points = 0
+    
+  dice.sort!.each_with_index do |v, i|
+      if dice.count(v) >= 3 then
+
+        if v == 1 then
+          points += 1000
+        else
+          points += v * 100
+        end
+
+        2.times { dice.delete_at i }
+
+      elsif v == 1 then
+        points += 100
+      elsif v == 5 then
+        points += 50
+      end
+    end
+
+    points
 end
 
 class AboutScoringProject < EdgeCase::Koan

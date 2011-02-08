@@ -1,0 +1,9 @@
+def truth_value(true)
+    if (true)
+      :true_stuff
+    else
+      :false_stuff
+    end
+  end
+
+puts truth_value
